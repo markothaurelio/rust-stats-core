@@ -1,0 +1,8 @@
+[workspace]
+members = [
+  "basic_math",
+  "test-app",
+]
+resolver = "2"
+
+
