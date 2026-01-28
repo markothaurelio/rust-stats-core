@@ -1,3 +1,4 @@
-pub fn mean(xs: &[f64]) -> f64 {
-    return xs.iter().sum::<f64>() / xs.len() as f64;
-}
+pub mod central_tendency;
+pub mod dispersion;
+
+pub use central_tendency::*;
