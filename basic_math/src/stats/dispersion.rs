@@ -34,9 +34,7 @@ pub fn sample_variance_unchecked(xs: &[f64]) -> f64 {
 
     let n = xs.len();
 
-    let added = xs.iter().copied().fold(0.0, |acc, x| acc + (x-mean).powf(2.0));
-
-    let sample_variance = 1.0/(n-1) as f64 * added;
+    let sample_variance = xs.iter().map(|&x| (x - mean).powf(2.0)).sum::<f64>() / (n - 1) as f64;
 
     sample_variance
 

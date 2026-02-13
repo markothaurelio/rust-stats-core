@@ -26,4 +26,6 @@ fn main() {
 
     println!("Sample Variance = {}", stats::sample_variance_unchecked(&v_iqr));
 
+    
+
 }
