@@ -46,10 +46,22 @@ pub fn skew_unchecked(xs: &[f64]) -> f64 {
     let mean = mean_unchecked(xs);
     let std = sample_standard_deviation_unchecked(xs);
 
-    let bias_correction  = n / ((n - 1.0) * (n - 2.0));
-
     let standardized_cubic_sum = xs.iter().map(|&x| ((x - mean) / std).powi(3)).sum::<f64>();
+    let bias_correction  = n / ((n - 1.0) * (n - 2.0));
 
     bias_correction * standardized_cubic_sum
 
+}
+
+pub fn kurtosis_unchecked(xs: &[f64]) -> f64 {
+
+    let n = xs.len() as f64;
+    let mean = mean_unchecked(xs);
+    let std = sample_standard_deviation_unchecked(xs);
+
+    let fourth_standardized_sum = xs.iter().map(|&x| ((x - mean) / std).powi(4)).sum::<f64>();
+    let bias_correction_1  = (n * (n + 1.0)) / ((n - 1.0) * (n - 2.0) * (n - 3.0));
+    let bias_correction_2  = (3.0 * (n - 1.0).powi(2)) / ((n - 2.0) * (n - 3.0));
+
+    bias_correction_1 * fourth_standardized_sum - bias_correction_2
 }
